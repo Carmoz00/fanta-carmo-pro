@@ -1,0 +1,6 @@
+databaseChangeLog:
+  - changeSet:
+      id: 001-baseline
+      author: carmoz00
+      changes:
+        - comment: "Baseline: Creazione dello schema iniziale gestita da Hibernate. Liquibase prende il controllo da qui."

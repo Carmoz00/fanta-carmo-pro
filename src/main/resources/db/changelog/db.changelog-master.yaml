@@ -1,0 +1,4 @@
+databaseChangeLog:
+  # Qui includeremo tutti i nostri futuri file di migrazione
+  - include:
+      file: db/changelog/changes/001-initial-schema-baseline.yaml
