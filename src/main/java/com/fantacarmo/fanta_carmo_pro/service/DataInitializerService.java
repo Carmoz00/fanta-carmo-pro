@@ -20,6 +20,7 @@ public class DataInitializerService {
     private final SquadraSerieARepository squadraSerieARepository;
     private final LegaFantaRepository legaFantaRepository;
     private final PlayerScrapingService playerScrapingService;
+    private final FantacalcioScraperService fantacalcioScraperService;
 
     @PostConstruct // Questa annotazione fa eseguire il metodo subito dopo la creazione del componente
     @Transactional // Assicura che tutte le operazioni sul DB avvengano in un'unica transazione
@@ -65,7 +66,8 @@ public class DataInitializerService {
             legaFantaRepository.saveAll(leghe);
             System.out.println("Tabella leghe_fanta popolata con " + leghe.size() + " leghe.");
         }
-    playerScrapingService.scrapeAndSavePlayers();
+        playerScrapingService.scrapeAndSavePlayers();
+        fantacalcioScraperService.scrapeLegheFantacalcio();
     }
 
     // Metodo helper per creare una SquadraSerieAEntity
