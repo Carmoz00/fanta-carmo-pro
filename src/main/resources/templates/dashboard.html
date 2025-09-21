@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="it" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FantaCarmo Pro - Dashboard</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f9; }
+        h1 { color: #333; }
+        .leghe-container { display: flex; flex-wrap: wrap; gap: 20px; }
+        .lega-card {
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 300px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .lega-card h2 { margin-top: 0; color: #0056b3; }
+        a { text-decoration: none; color: inherit; }
+    </style>
+</head>
+<body>
+
+<h1>Dashboard Leghe</h1>
+
+<div class="leghe-container">
+    <div th:each="lega : ${legheList}" class="lega-card">
+        <a href="#"> <h2 th:text="${lega.nome}">Nome Lega</h2>
+            <p>Clicca per vedere le squadre e la classifica.</p>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
