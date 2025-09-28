@@ -3,6 +3,8 @@ package com.fantacarmo.fanta_carmo_pro.entity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -26,11 +28,16 @@ public class SquadraFantaEntity {
     @JoinColumn(name = "lega_fanta_id", nullable = false)
     private LegaFantaEntity legaFanta;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "squadra_fanta_giocatori",
-            joinColumns = @JoinColumn(name = "squadra_fanta_id"),
-            inverseJoinColumns = @JoinColumn(name = "giocatore_id")
-    )
-    private Set<GiocatoreEntity> giocatori;
+
+    // SOSTITUISCI il vecchio campo @ManyToMany con questo
+    @OneToMany(mappedBy = "squadraFanta", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<RosaGiocatoreEntity> rosa = new HashSet<>(); // <-- Inizializza subito la collezione!
+
+    private Integer posizione;
+    private Integer punti;
+    private Integer vittorie;
+    private Integer pareggi;
+    private Integer sconfitte;
+    private Integer golFatti;
+    private Integer golSubiti;
 }
