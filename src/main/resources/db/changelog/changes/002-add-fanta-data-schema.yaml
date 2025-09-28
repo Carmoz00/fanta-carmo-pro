@@ -1,0 +1,80 @@
+databaseChangeLog:
+  - changeSet:
+      id: 002-add-ranking-to-squadre-fanta
+      author: carmoz00
+      changes:
+        - addColumn:
+            tableName: squadre_fanta
+            columns:
+              - column:
+                  name: posizione
+                  type: int
+              - column:
+                  name: punti
+                  type: int
+              - column:
+                  name: vittorie
+                  type: int
+              - column:
+                  name: pareggi
+                  type: int
+              - column:
+                  name: sconfitte
+                  type: int
+              - column:
+                  name: gol_fatti
+                  type: int
+              - column:
+                  name: gol_subiti
+                  type: int
+
+  - changeSet:
+      id: 003-create-partite-fanta-table
+      author: carmoz00
+      changes:
+        - createTable:
+            tableName: partite_fanta
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: giornata
+                  type: int
+                  constraints:
+                    nullable: false
+              - column:
+                  name: lega_fanta_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_partitefanta_legafanta
+                    references: leghe_fanta(id)
+              - column:
+                  name: squadra_casa_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_partitefanta_squadracasa
+                    references: squadre_fanta(id)
+              - column:
+                  name: squadra_ospite_id
+                  type: bigint
+                  constraints:
+                    foreignKeyName: fk_partitefanta_squadraospite
+                    references: squadre_fanta(id)
+              - column:
+                  name: punteggio_casa
+                  type: double
+              - column:
+                  name: punteggio_ospite
+                  type: double
+              - column:
+                  name: gol_casa
+                  type: int
+              - column:
+                  name: gol_ospite
+                  type: int

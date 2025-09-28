@@ -67,7 +67,7 @@ public class DataInitializerService {
             System.out.println("Tabella leghe_fanta popolata con " + leghe.size() + " leghe.");
         }
         playerScrapingService.scrapeAndSavePlayers();
-        fantacalcioScraperService.scrapeLegheFantacalcio();
+        fantacalcioScraperService.scrapeAllFantacalcioData();
     }
 
     // Metodo helper per creare una SquadraSerieAEntity

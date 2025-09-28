@@ -2,6 +2,7 @@ package com.fantacarmo.fanta_carmo_pro.entity;
 
 import com.fantacarmo.fanta_carmo_pro.entity.enums.Ruolo;
 import jakarta.persistence.*;
+import java.util.Set;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,4 +28,8 @@ public class GiocatoreEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "squadra_serie_a_id", nullable = false)
     private SquadraSerieAEntity squadraSerieA;
+
+    // AGGIUNGI questo nuovo campo
+    @OneToMany(mappedBy = "giocatore")
+    private Set<RosaGiocatoreEntity> presenzeNelleRose;
 }

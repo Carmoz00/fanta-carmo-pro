@@ -1,0 +1,40 @@
+databaseChangeLog:
+  - changeSet:
+      id: 004-drop-squadra-fanta-giocatori-table
+      author: carmoz00
+      changes:
+        - dropTable:
+            tableName: squadra_fanta_giocatori
+            cascadeConstraints: true
+
+  - changeSet:
+      id: 005-create-rosa-giocatori-table
+      author: carmoz00
+      changes:
+        - createTable:
+            tableName: rosa_giocatori
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: squadra_fanta_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_rosagiocatore_squadrafanta
+                    references: squadre_fanta(id)
+              - column:
+                  name: giocatore_id
+                  type: bigint
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_rosagiocatore_giocatore
+                    references: giocatori(id)
+              - column:
+                  name: prezzo_acquisto
+                  type: int
